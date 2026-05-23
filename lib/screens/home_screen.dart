@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:geofence_service/geofence_service.dart';
+import 'package:geofence_service/geofence_service.dart' hide LocationAccuracy;
 import 'package:msque/services/geofence_service.dart';
 
 class HomeScreen extends StatefulWidget {
