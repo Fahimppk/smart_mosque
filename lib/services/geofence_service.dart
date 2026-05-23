@@ -14,9 +14,7 @@ class MosqueGeofenceService {
   final _geofenceService = GeofenceService.instance.setup(
     interval: 5000,
     accuracy: 100,
-    retries: 3,
     geofenceRadiusSortType: GeofenceRadiusSortType.DESC,
-    errorScheduleDelay: const Duration(seconds: 10),
     useActivityRecognition: false,
     allowMockLocations: true,
     printDevLog: true,
@@ -43,11 +41,11 @@ class MosqueGeofenceService {
     }
   }
 
-  void _onGeofenceStatusChanged(
+  Future<void> _onGeofenceStatusChanged(
       Geofence geofence,
       GeofenceRadius geofenceRadius,
       GeofenceStatus geofenceStatus,
-      Location location) {
+      Location location) async {
     print('geofence: \${geofence.id}, status: \${geofenceStatus.toString()}');
 
     if (geofenceStatus == GeofenceStatus.ENTER) {
@@ -90,7 +88,7 @@ class MosqueGeofenceService {
     print('currActivity: \${currActivity.toJson()}');
   }
 
-  void _onError(error) {
+  void _onError(dynamic error) {
     final errorCode = getErrorCodesFromError(error);
     if (errorCode == null) {
       print('Undefined error: \$error');
